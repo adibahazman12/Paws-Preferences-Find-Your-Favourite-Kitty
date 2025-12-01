@@ -1,123 +1,106 @@
-/* Buang margin & padding default browser */
+/* Buang margin & padding default browser, kita nak kawal sendiri */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
 
 body, html, #root {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Baloo 2', Arial, sans-serif;
+  width: 100%; /* Penuh lebar skrin */
+  height: 100%; /* Penuh tinggi skrin */
+  font-family: 'Baloo 2', Arial, sans-serif; /* Font simple & selesa mata */
+  
+  display: flex; 
+  justify-content: center; /* Center horizontal */
+  align-items: center; /* Center vertical */
+  
+  /* Gradient dari pink ke ungu dengan lebih dari 2 warna */
+background: linear-gradient(135deg, #ff9de2, #ff6fcf, #8e44ad, #6a0dad);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* Gradient cantik */
-  background: linear-gradient(135deg, #ff9de2, #ff6fcf, #c957d5, #8e44ad, #6a0dad);
 }
 
-/* Wrapper */
+/* Kotak utama app */
+.app-container {
+  width: 80%;
+  max-width: 300px; /* Supaya tak besar sangat kat hp */
+  height: 400px; /* Tinggi tetap untuk frame card */
+  
+  position: relative; /* Biar card boleh position absolute di dalam */
+  overflow: hidden; /* Sembunyikan card yang terkeluar frame */
+  border-radius: 20px; /* Sudut bulat, nampak friendly */
+  /* box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2); Sedikit shadow supaya nampak floating
+  background: rgba(255,255,255,0.1); Sedikit transparan supaya gradient nampak
+} */
+}
+
+/* Wrapper untuk app + header */
 .app-wrapper {
-  width: 100%;
-  max-width: 430px;
-  padding: 10px 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Header atas, container bawah */
   align-items: center;
 }
 
-/* Header */
+/* Header atas card stack */
 .header-title {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: bold;
   color: white;
+  margin-bottom: 5px; /* Jarak bawah header ke container */
   text-align: center;
-  margin-bottom: 5px;
-
-  /* Responsive font */
-  width: 100%;
 }
 
-/* Frame utama card */
-.app-container {
-  width: 95%;
-  height: 80vh;          /* ikut tinggi screen */
-  max-height: 600px;     /* supaya tak terlalu besar desktop */
-  min-height: 450px;     /* pastikan phone kecil still ok */
-
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(4px);
-}
-
-/* Stack card */
+/* Tempat card-card stack */
 .card-stack {
-  position: relative;
+  position: relative; /* Biar card boleh absolute & tumpuk */
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px); /* Kurangkan tinggi header supaya card start bawah */
+  margin-top: 90px; /* Jarak bawah header */
 }
 
-/* Polaroid card */
-.cat-card {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background-color: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  position: absolute;
-  cursor: grab;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
 
-.cat-card img {
-  width: 100%;
-  height: 78%;
-  object-fit: cover;
-}
 
-.cat-card .caption {
-  height: 22%;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  padding-top: 8px;
-  color: #333;
-}
 
-/* Summary Section */
+/* Summary container bila semua card habis */
 .summary {
-  text-align: center;
+  text-align: center; /* Center teks biar senang baca */
   padding: 20px;
   color: white;
 }
 
-/* Liked cats grid */
+/* Tajuk summary */
+.summary h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* Teks jumlah kucing yang di like */
+.summary h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Container untuk show kucing yang di-like */
 .liked-cats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 10px;
+  display: flex; /* Susun gambar ikut row */
+  flex-wrap: wrap; /* Kalau banyak, turun baris baru */
+  justify-content: center; /* Center gambar kat baris */
+  gap: 10px; /* Jarak antara gambar biar tak rapat */
+  margin-top: 10px; /* Jarak sikit dari teks summary */
 }
 
+/* Gambar kucing yang kita suka */
 .liked-cats img {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  object-fit: cover;
+  width: 80px; /* Saiz tetap supaya konsisten */
+  height: 80px; /* Sama tinggi & lebar */
+  border-radius: 10px; /* Sudut bulat supaya nampak comel */
+  object-fit: cover; /* Pastikan gambar cover frame */
 }
 
-/* Button */
+/* Button restart */
 .summary button {
   margin-top: 15px;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #ff9de2;
+  background-color: #ff9de2; /* Warna pink */
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -125,10 +108,9 @@ body, html, #root {
 }
 
 .summary button:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Sedikit zoom bila hover */
 }
 
-/* Emoji pouring */
 .pouring-emoji {
   position: absolute;
   font-size: 30px;
@@ -140,16 +122,16 @@ body, html, #root {
 @keyframes fall {
   0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
   20% { opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
 }
 
-/* Swipe overlay text */
+/* Overlay untuk swipe right / left di atas card */
 .swipe-overlay {
   position: absolute;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 50px;
-  pointer-events: none;
+  font-size: 60px;
+  pointer-events: none; /* Biar swipe tetap smooth */
   user-select: none;
 }
